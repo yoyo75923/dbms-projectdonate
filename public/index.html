@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seva Connect - NSS IIT Patna</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div>
+                <h1>Seva Connect</h1>
+                <p class="subtitle">NSS IIT Patna Donation Platform</p>
+            </div>
+            <button class="logout-button" onclick="handleLogout()">Logout</button>
+        </div>
+    </header>
+
+    <main>
+        <nav class="donation-types">
+            <button class="nav-button" onclick="showBloodDonation()">Blood Donation</button>
+            <button class="nav-button active" onclick="showFundraising()">Fund Raising</button>
+            <button class="nav-button" onclick="showItemDonation()">Item Donation</button>
+        </nav>
+
+        <!-- Blood Donation Section -->
+        <div id="blood-donation" class="section hidden">
+            <div class="section-header">
+                <h2>Blood Donation</h2>
+                <button class="add-event-button" onclick="showAddBloodEvent()">Add Blood Camp</button>
+            </div>
+            <div class="blood-camps">
+                <h3>Upcoming Blood Donation Camps</h3>
+                <div id="blood-camps-list"></div>
+            </div>
+            <div class="blood-requests">
+                <div class="section-header">
+                    <h3>Blood Requests</h3>
+                    <button class="add-event-button" onclick="showAddBloodRequest()">Add Request</button>
+                </div>
+                <div id="blood-requests-list"></div>
+            </div>
+        </div>
+
+        <!-- Add Blood Camp Modal -->
+        <div id="addBloodCampModal" class="modal hidden">
+            <div class="modal-content">
+                <h3>Add Blood Donation Camp</h3>
+                <form id="addBloodCampForm" onsubmit="return handleAddBloodCamp(event)">
+                    <div class="form-group">
+                        <label for="camp-title">Title</label>
+                        <input type="text" id="camp-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="camp-description">Description</label>
+                        <textarea id="camp-description" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="camp-location">Location</label>
+                        <input type="text" id="camp-location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="camp-date">Date</label>
+                        <input type="date" id="camp-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="camp-start-time">Start Time</label>
+                        <input type="time" id="camp-start-time" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="camp-end-time">End Time</label>
+                        <input type="time" id="camp-end-time" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="camp-blood-groups">Required Blood Groups</label>
+                        <select id="camp-blood-groups" multiple required>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                        <small>Hold Ctrl/Cmd to select multiple groups</small>
+                    </div>
+                    <div class="modal-buttons">
+                        <button type="button" class="cancel-button" onclick="hideModal('addBloodCampModal')">Cancel</button>
+                        <button type="submit" class="submit-button">Add Camp</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Add Blood Request Modal -->
+        <div id="addBloodRequestModal" class="modal hidden">
+            <div class="modal-content">
+                <h3>Add Blood Request</h3>
+                <form id="addBloodRequestForm" onsubmit="return handleAddBloodRequest(event)">
+                    <div class="form-group">
+                        <label for="request-patient">Patient Name</label>
+                        <input type="text" id="request-patient" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="request-hospital">Hospital Name</label>
+                        <input type="text" id="request-hospital" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="request-location">Hospital Address</label>
+                        <textarea id="request-location" rows="2" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="request-blood-type">Required Blood Group</label>
+                        <select id="request-blood-type" required>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="request-units">Units Required</label>
+                        <input type="number" id="request-units" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="request-urgency">Urgency Level</label>
+                        <select id="request-urgency" required>
+                            <option value="urgent">Urgent</option>
+                            <option value="normal">Normal</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="request-contact-person">Contact Person</label>
+                        <input type="text" id="request-contact-person" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="request-contact">Contact Number</label>
+                        <input type="tel" id="request-contact" pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="request-notes">Additional Notes</label>
+                        <textarea id="request-notes" rows="2"></textarea>
+                    </div>
+                    <div class="modal-buttons">
+                        <button type="button" class="cancel-button" onclick="hideModal('addBloodRequestModal')">Cancel</button>
+                        <button type="submit" class="submit-button">Add Request</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Fundraising Section -->
+        <div id="fundraising" class="section">
+            <div class="section-header">
+                <h2>Ongoing Fundraisers</h2>
+                <button class="add-event-button" onclick="showAddFundraiser()">Add Fundraiser</button>
+            </div>
+            <div id="fundraising-campaigns" class="fundraising-grid"></div>
+        </div>
+
+        <!-- Add Fundraiser Modal -->
+        <div id="addFundraiserModal" class="modal hidden">
+            <div class="modal-content">
+                <h3>Add Fundraiser</h3>
+                <form id="addFundraiserForm" onsubmit="return handleAddFundraiser(event)">
+                    <div class="form-group">
+                        <label for="fundraiser-title">Title</label>
+                        <input type="text" id="fundraiser-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fundraiser-description">Description</label>
+                        <textarea id="fundraiser-description" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="fundraiser-target">Target Amount (₹)</label>
+                        <input type="number" id="fundraiser-target" min="1000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fundraiser-days">Campaign Duration (Days)</label>
+                        <input type="number" id="fundraiser-days" min="1" max="90" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fundraiser-category">Category</label>
+                        <select id="fundraiser-category" required>
+                            <option value="medical">Medical</option>
+                            <option value="education">Education</option>
+                            <option value="disaster">Disaster Relief</option>
+                            <option value="social">Social Cause</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="fundraiser-image">Image URL (Optional)</label>
+                        <input type="url" id="fundraiser-image" placeholder="https://example.com/image.jpg">
+                    </div>
+                    <div class="modal-buttons">
+                        <button type="button" class="cancel-button" onclick="hideModal('addFundraiserModal')">Cancel</button>
+                        <button type="submit" class="submit-button">Add Fundraiser</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Donate to Campaign Modal -->
+        <div id="donateModal" class="modal hidden">
+            <div class="modal-content">
+                <h3>Make a Donation</h3>
+                <form id="donateForm" class="donation-form" onsubmit="return handleDonation(event)">
+                    <input type="hidden" id="donate-campaign-id">
+                    <div class="form-group">
+                        <label for="donate-amount">Amount (₹)</label>
+                        <input type="number" id="donate-amount" min="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="donate-payment">Payment Method</label>
+                        <select id="donate-payment" required>
+                            <option value="credit_card">Credit Card</option>
+                            <option value="debit_card">Debit Card</option>
+                            <option value="upi">UPI</option>
+                            <option value="net_banking">Net Banking</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="donate-message">Message (Optional)</label>
+                        <textarea id="donate-message" class="donation-message" rows="2"></textarea>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="donate-anonymous">
+                        <label for="donate-anonymous">Make donation anonymous</label>
+                    </div>
+                    <div class="modal-buttons">
+                        <button type="button" class="cancel-button" onclick="hideModal('donateModal')">Cancel</button>
+                        <button type="submit" class="donate-button">
+                            <i class="fas fa-heart"></i>
+                            Make Donation
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Item Donation Section -->
+        <div id="item-donation" class="section hidden">
+            <div class="section-header">
+                <h2>Item Donation Campaigns</h2>
+                <button class="add-event-button" onclick="showAddItemCampaign()">Add Campaign</button>
+            </div>
+            <div id="item-categories"></div>
+            <div class="drop-off-section">
+                <div class="container">
+                    <h2>Drop-off Location</h2>
+                    <p class="location-text">You can drop off your donations at the NSS Office, Student Activity Center, IIT Patna Campus.</p>
+                    <p class="timing">Open Monday to Friday, 10:00 AM to 5:00 PM</p>
+                    <p class="contact">For large items, please call +91 9876543210 to arrange pickup.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Item Campaign Modal -->
+        <div id="addItemCampaignModal" class="modal hidden">
+            <div class="modal-content">
+                <h3>Add Item Donation Campaign</h3>
+                <form id="addItemCampaignForm" onsubmit="return handleAddItemCampaign(event)">
+                    <div class="form-group">
+                        <label for="item-campaign-title">Title</label>
+                        <input type="text" id="item-campaign-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="item-campaign-description">Description</label>
+                        <textarea id="item-campaign-description" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="item-campaign-location">Collection Location</label>
+                        <input type="text" id="item-campaign-location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="item-campaign-start">Start Date</label>
+                        <input type="date" id="item-campaign-start" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="item-campaign-end">End Date</label>
+                        <input type="date" id="item-campaign-end" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="item-campaign-category">Category</label>
+                        <select id="item-campaign-category" required>
+                            <option value="clothing">Clothing</option>
+                            <option value="food">Food</option>
+                            <option value="books">Books</option>
+                            <option value="toys">Toys</option>
+                            <option value="furniture">Furniture</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="modal-buttons">
+                        <button type="button" class="cancel-button" onclick="hideModal('addItemCampaignModal')">Cancel</button>
+                        <button type="submit" class="submit-button">Add Campaign</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Donate Item Modal -->
+        <div id="donateItemModal" class="modal hidden">
+            <div class="modal-content">
+                <h3>Donate Items</h3>
+                <form id="donateItemForm" onsubmit="return handleItemDonation(event)">
+                    <input type="hidden" id="donate-item-campaign-id">
+                    <div class="form-group">
+                        <label for="donate-item-name">Item Name</label>
+                        <input type="text" id="donate-item-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="donate-item-quantity">Quantity</label>
+                        <input type="number" id="donate-item-quantity" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="donate-item-condition">Condition</label>
+                        <select id="donate-item-condition" required>
+                            <option value="new">New</option>
+                            <option value="like_new">Like New</option>
+                            <option value="good">Good</option>
+                            <option value="fair">Fair</option>
+                            <option value="poor">Poor</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="donate-item-description">Description</label>
+                        <textarea id="donate-item-description" rows="2" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="donate-item-address">Collection Address</label>
+                        <textarea id="donate-item-address" rows="2" required></textarea>
+                    </div>
+                    <div class="modal-buttons">
+                        <button type="button" class="cancel-button" onclick="hideModal('donateItemModal')">Cancel</button>
+                        <button type="submit" class="submit-button">Donate Items</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Registration Modal -->
+        <div id="registerModal" class="modal hidden">
+            <div class="modal-content">
+                <h3>Register</h3>
+                <form id="registerForm" onsubmit="return handleRegistration(event)">
+                    <div class="form-group">
+                        <label for="register-username">Username</label>
+                        <input type="text" id="register-username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-fullname">Full Name</label>
+                        <input type="text" id="register-fullname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-phone">Phone Number</label>
+                        <input type="tel" id="register-phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-address">Address</label>
+                        <textarea id="register-address" rows="2" required></textarea>
+                    </div>
+                    <div class="modal-buttons">
+                        <button type="button" class="cancel-button" onclick="hideModal('registerModal')">Cancel</button>
+                        <button type="submit" class="submit-button">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Admin Controls (visible only to admin users) -->
+        <div id="adminControls" class="admin-controls hidden">
+            <button onclick="cleanupCompletedCampaigns()" class="admin-button">
+                <i class="fas fa-broom"></i> Clean Up Completed Campaigns
+            </button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html> 

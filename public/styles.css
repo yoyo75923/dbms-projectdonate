@@ -1,0 +1,1656 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+:root {
+    --primary-color: #2563EB;
+    --primary-hover: #1D4ED8;
+    --text-color: #1F2937;
+    --text-light: #6B7280;
+    --bg-color: #F9FAFB;
+    --card-bg: #FFFFFF;
+    --border-color: #E5E7EB;
+    --green-color: #059669;
+    --nav-bg: #EEF2FF;
+    --nav-active: #3B82F6;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --gradient: linear-gradient(135deg, #2563EB, #1D4ED8);
+    --section-spacing: 3rem;
+    --text-spacing: 1.25rem;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+header {
+    background: var(--gradient);
+    color: white;
+    text-align: center;
+    padding: 3rem 2rem;
+    margin-bottom: 3rem;
+    box-shadow: var(--shadow-md);
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: white;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+}
+
+.donation-types {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: var(--section-spacing);
+    background-color: var(--card-bg);
+    padding: 1rem;
+    border-radius: 12px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: var(--shadow-md);
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.nav-button:hover {
+    background-color: var(--nav-bg);
+    color: var(--primary-color);
+}
+
+.nav-button.active {
+    background: var(--gradient);
+    color: white;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 1.75rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+}
+
+.fundraising-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.campaign-card {
+    background-color: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+}
+
+.campaign-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+.campaign-card h3 {
+    color: var(--text-color);
+    font-size: 1.75rem;
+    margin-bottom: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.campaign-card p {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    font-size: 1.05rem;
+}
+
+.blood-camps, .blood-requests, #item-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.blood-camps, .blood-requests {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: var(--section-spacing);
+}
+
+.blood-camps .campaign-card, .blood-requests .campaign-card, .donation-info {
+    background-color: var(--card-bg);
+    padding: 1.75rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 0.75rem 0;
+    display: grid;
+    gap: 1.5rem;
+}
+
+.blood-camps .campaign-card {
+    grid-template-columns: 2fr 1fr 1fr auto;
+    align-items: center;
+}
+
+.blood-requests .campaign-card {
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+}
+
+.blood-camps .campaign-card:hover, 
+.blood-requests .campaign-card:hover,
+.donation-info:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+.blood-camps .camp-info {
+    margin-bottom: 0;
+}
+
+.blood-camps .campaign-info, 
+.blood-camps .progress-bar,
+.blood-camps .organized-by {
+    margin: 0;
+}
+
+.blood-camps .donate-button,
+.blood-requests .donate-button {
+    width: auto;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.blood-type-header {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: var(--nav-bg);
+    border-radius: 8px;
+}
+
+.blood-icon {
+    font-size: 2.25rem;
+    color: var(--primary-color);
+    background: white;
+    padding: 0.5rem;
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm);
+}
+
+.request-details {
+    margin: 0;
+    background: none;
+    padding: 0;
+}
+
+.request-details p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.contact-info {
+    text-align: right;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.camp-info {
+    margin-bottom: 2rem;
+}
+
+.camp-info p {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+    font-size: 1.05rem;
+    line-height: 1.5;
+}
+
+.camp-info .venue {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.campaign-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.amount-raised {
+    font-weight: 700;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+.days-left {
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.progress-bar {
+    background-color: var(--border-color);
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+}
+
+.progress {
+    height: 100%;
+    background: var(--gradient);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.amount {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+    font-weight: 600;
+}
+
+.amount span:first-child {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+}
+
+.donate-button, .request-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.875rem 1.75rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    width: auto;
+    margin: 0;
+}
+
+.donate-button:hover, .request-button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.donate-button i, .request-button i {
+    font-size: 1.1rem;
+}
+
+.organized-by {
+    color: var(--text-light);
+    font-size: 0.875rem;
+    margin: 1rem 0;
+}
+
+.section {
+    background: none;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+}
+
+h2 {
+    color: var(--text-color);
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.amount-error {
+    color: #DC2626;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.amount-error.show {
+    display: block;
+}
+
+.donation-card {
+    background-color: var(--card-bg);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    justify-content: center;
+}
+
+.donation-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.donation-card .icon {
+    font-size: 1.5rem;
+}
+
+.donation-card span:not(.icon) {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.donation-amount {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.donation-amount input {
+    flex: 1;
+    padding: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.donation-amount input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.donation-amount .donate-button {
+    width: auto;
+    padding: 1rem 2rem;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.drop-off-info {
+    background-color: #EBF5FF;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    text-align: center;
+    border: 1px solid #BFE3FF;
+}
+
+.drop-off-info h3 {
+    color: #2563EB;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.drop-off-info .location-text {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.drop-off-info .timing {
+    color: #2563EB;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.drop-off-info .contact {
+    color: var(--text-light);
+}
+
+.drop-off-section {
+    background-color: #EBF5FF;
+    padding: 3rem;
+    margin-top: 4rem;
+    border-radius: 16px;
+    border: 1px solid #BFE3FF;
+}
+
+.drop-off-section .container {
+    text-align: center;
+}
+
+.drop-off-section h2 {
+    color: #2563EB;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    border: none;
+    letter-spacing: -0.02em;
+}
+
+.drop-off-section .location-text {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.drop-off-section .timing {
+    color: #2563EB;
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.drop-off-section .contact {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.logout-button {
+    background-color: #DC2626;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 2px 4px rgba(220, 38, 38, 0.2);
+}
+
+.logout-button:hover {
+    background-color: #B91C1C;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(220, 38, 38, 0.3);
+}
+
+.logout-button i {
+    font-size: 1.1rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.section-header h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.add-event-button {
+    background: var(--gradient);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.add-event-button:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    padding: 3rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-content h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    color: var(--text-color);
+    letter-spacing: -0.02em;
+}
+
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 1.05rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1.05rem;
+    transition: all 0.2s ease;
+    line-height: 1.5;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.submit-button,
+.cancel-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.submit-button {
+    background: var(--gradient);
+    color: white;
+    border: none;
+}
+
+.submit-button:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.cancel-button {
+    background: none;
+    border: 2px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.cancel-button:hover {
+    background-color: var(--bg-color);
+    border-color: var(--text-color);
+}
+
+.no-items {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--bg-color);
+    border-radius: 12px;
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+.donation-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.75rem;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.donation-info:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.donation-info .items-count {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.donation-info .location {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.donation-info .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.fundraising-grid .campaign-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.75rem;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fundraising-grid .campaign-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+.fundraising-grid .campaign-card .donate-button {
+    align-self: flex-end;
+    margin-top: auto;
+}
+
+.admin-controls {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 100;
+}
+
+.admin-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.admin-button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.admin-button i {
+    font-size: 1.1rem;
+}
+
+/* Registration form styles */
+#registerForm .form-group {
+    margin-bottom: 1.25rem;
+}
+
+#registerForm label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+#registerForm input,
+#registerForm textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+#registerForm input:focus,
+#registerForm textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+#registerForm textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.donation-form {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    max-width: 500px;
+    margin: 2rem auto;
+}
+
+.donation-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.donation-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.donation-form input[type="number"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.donation-form input[type="number"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    margin: 0;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--text-light);
+}
+
+.donate-button {
+    background: var(--gradient);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: var(--shadow-sm);
+}
+
+.donate-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.donate-button i {
+    font-size: 1.1rem;
+}
+
+.donation-message {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 100px;
+    margin-bottom: 1.5rem;
+    font-family: inherit;
+}
+
+.donation-message:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+} 
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#blood-camps-list .card {
+    background-color: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: 2rem;
+    align-items: center;
+}
+
+#blood-camps-list .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+#blood-camps-list .card .camp-info {
+    margin: 0;
+}
+
+#blood-camps-list .card .camp-info h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+#blood-camps-list .card .camp-info p {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+    font-size: 1.05rem;
+    line-height: 1.5;
+}
+
+#blood-camps-list .card .camp-info .venue {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+#blood-camps-list .card .blood-groups {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+
+#blood-camps-list .card .blood-group {
+    background-color: var(--nav-bg);
+    color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+#blood-camps-list .card .campaign-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#blood-camps-list .card .organized-by {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+#blood-camps-list .card .donate-button {
+    background: var(--gradient);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+#blood-camps-list .card .donate-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+#blood-camps-list .card .donate-button i {
+    font-size: 1.1rem;
+}
+
+#blood-requests-list .card {
+    background-color: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 2rem;
+    align-items: center;
+}
+
+#blood-requests-list .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+#blood-requests-list .card.card-urgent {
+    border-left: 4px solid #DC2626;
+    background: linear-gradient(to right, rgba(220, 38, 38, 0.05), var(--card-bg));
+}
+
+#blood-requests-list .card .request-details {
+    margin: 0;
+}
+
+#blood-requests-list .card .request-details h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#blood-requests-list .card.card-urgent .request-details h4::before {
+    content: "🔴";
+    font-size: 1.2rem;
+}
+
+#blood-requests-list .card .request-details p {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+    font-size: 1.05rem;
+    line-height: 1.5;
+}
+
+#blood-requests-list .card .request-details .hospital {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+#blood-requests-list .card .blood-type {
+    background-color: var(--nav-bg);
+    color: var(--primary-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-align: center;
+    min-width: 100px;
+}
+
+#blood-requests-list .card.card-urgent .blood-type {
+    background-color: rgba(220, 38, 38, 0.1);
+    color: #DC2626;
+}
+
+#blood-requests-list .card .contact-info {
+    text-align: right;
+}
+
+#blood-requests-list .card .contact-info p {
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+    font-size: 1.05rem;
+}
+
+#blood-requests-list .card .contact-info .contact-person {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+#blood-requests-list .card .contact-info .phone {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+#blood-requests-list .card .request-button {
+    background: var(--gradient);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+#blood-requests-list .card.card-urgent .request-button {
+    background: linear-gradient(135deg, #DC2626, #B91C1C);
+}
+
+#blood-requests-list .card .request-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+#blood-requests-list .card .request-button i {
+    font-size: 1.1rem;
+}
+
+#fundraising-campaigns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+#fundraising-campaigns .card {
+    background-color: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#fundraising-campaigns .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+#fundraising-campaigns .card h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+}
+
+#fundraising-campaigns .card p {
+    color: var(--text-light);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+#fundraising-campaigns .card .campaign-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+#fundraising-campaigns .card .amount-raised {
+    font-weight: 700;
+    color: var(--text-color);
+    font-size: 1.25rem;
+}
+
+#fundraising-campaigns .card .days-left {
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 1.05rem;
+}
+
+#fundraising-campaigns .card .progress-bar {
+    background-color: var(--border-color);
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+}
+
+#fundraising-campaigns .card .progress {
+    height: 100%;
+    background: var(--gradient);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+#fundraising-campaigns .card .amount {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+    font-weight: 600;
+}
+
+#fundraising-campaigns .card .amount span:first-child {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+}
+
+#fundraising-campaigns .card .donate-button {
+    align-self: flex-end;
+    margin-top: auto;
+}
+
+/* Item Categories Styles */
+#item-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+#item-categories .campaign-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+#item-categories .card {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: relative;
+    overflow: hidden;
+}
+
+#item-categories .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#item-categories .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+#item-categories .card:hover::before {
+    opacity: 1;
+}
+
+#item-categories .card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+}
+
+#item-categories .card p {
+    color: var(--text-light);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+#item-categories .card .campaign-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--nav-bg);
+    padding: 1.25rem;
+    border-radius: 12px;
+    margin: 0.5rem 0;
+}
+
+#item-categories .campaign-card .location,
+#item-categories .campaign-card .date-range {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-light);
+    font-size: 1rem;
+}
+
+#item-categories .campaign-card .location i,
+#item-categories .campaign-card .date-range i {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    background-color: white;
+    padding: 0.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+}
+
+#item-categories .campaign-card .items-count {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#item-categories .campaign-card .items-count i {
+    font-size: 1.1rem;
+}
+
+#item-categories .campaign-card .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+#item-categories .campaign-card .donate-button {
+    background: var(--gradient);
+    color: white;
+    border: none;
+    padding: 0.875rem 1.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+#item-categories .campaign-card .donate-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+#item-categories .campaign-card .donate-button i {
+    font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+    
+    .logout-button {
+        align-self: center;
+    }
+    
+    #fundraising-campaigns {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    
+    #item-categories .campaign-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 1.5rem 1rem;
+    }
+    
+    .header-content {
+        gap: 1rem;
+    }
+    
+    header h1 {
+        font-size: 2.25rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    main {
+        padding: 0 1rem 2rem;
+    }
+    
+    .donation-types {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5rem;
+        padding: 0.75rem;
+    }
+    
+    .nav-button {
+        width: 100%;
+        padding: 0.875rem;
+        font-size: 1rem;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+    }
+    
+    .section-header h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0;
+    }
+    
+    .add-event-button {
+        width: 100%;
+        padding: 0.75rem 1rem;
+    }
+    
+    #blood-camps-list .card,
+    #blood-requests-list .card,
+    #fundraising-campaigns .card,
+    #item-categories .campaign-card {
+        grid-template-columns: 1fr;
+        padding: 1.25rem;
+        gap: 1.25rem;
+    }
+    
+    .modal-content {
+        padding: 1.25rem;
+        width: 95%;
+        max-height: 85vh;
+    }
+    
+    .modal-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1.25rem;
+    }
+    
+    .form-group label {
+        font-size: 0.95rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 16px; /* Prevents zoom on mobile */
+        padding: 0.75rem;
+    }
+    
+    .modal-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .modal-buttons button {
+        width: 100%;
+        padding: 0.75rem;
+    }
+    
+    #blood-camps-list .card .blood-groups,
+    #blood-requests-list .card .contact-info {
+        justify-content: flex-start;
+    }
+    
+    .drop-off-section {
+        padding: 1.25rem;
+        margin-top: 2rem;
+    }
+    
+    .drop-off-section h2 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+    
+    .drop-off-section .location-text {
+        font-size: 1rem;
+    }
+    
+    .drop-off-section .timing,
+    .drop-off-section .contact {
+        font-size: 0.95rem;
+    }
+    
+    #blood-camps-list .card .camp-info h4,
+    #blood-requests-list .card .request-details h4,
+    #fundraising-campaigns .card h3,
+    #item-categories .campaign-card h3 {
+        font-size: 1.25rem;
+    }
+    
+    #blood-camps-list .card .camp-info p,
+    #blood-requests-list .card .request-details p,
+    #fundraising-campaigns .card p,
+    #item-categories .campaign-card p {
+        font-size: 0.95rem;
+    }
+    
+    .campaign-card .campaign-info {
+        padding: 1rem;
+    }
+    
+    .donate-button,
+    .request-button {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .logout-button {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.9rem;
+    }
+    
+    .section-header h2 {
+        font-size: 1.25rem;
+    }
+    
+    #blood-camps-list .card h4,
+    #blood-requests-list .card h4,
+    #fundraising-campaigns .card h3,
+    #item-categories .campaign-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    #blood-camps-list .card .camp-info p,
+    #blood-requests-list .card .request-details p,
+    #fundraising-campaigns .card p,
+    #item-categories .campaign-card p {
+        font-size: 0.9rem;
+    }
+    
+    .campaign-card .campaign-info {
+        padding: 0.75rem;
+    }
+    
+    .donate-button,
+    .request-button {
+        padding: 0.625rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .blood-group {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.85rem;
+    }
+    
+    .modal-content {
+        padding: 1rem;
+    }
+    
+    .modal-content h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    
+    .form-group label {
+        font-size: 0.9rem;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 0.625rem;
+    }
+}
+
+/* Fix for iOS Safari 100vh issue */
+@supports (-webkit-touch-callout: none) {
+    .modal {
+        height: -webkit-fill-available;
+    }
+}
